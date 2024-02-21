@@ -4,6 +4,7 @@ import 'package:portfolio_website/model/avatar_circle.dart';
 final ThemeData myPortfolioTheme = ThemeData(
   fontFamily: 'Montserrat',
   scaffoldBackgroundColor: const Color.fromARGB(255, 25, 24, 25),
+  primaryColor: Colors.white,
 );
 
 double getFontSize(double screenWidth) {

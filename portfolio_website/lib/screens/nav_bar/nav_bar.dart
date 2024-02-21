@@ -2,6 +2,7 @@ import 'package:portfolio_website/screens/nav_bar/controller/nav_bar_controller.
 import 'package:portfolio_website/screens/home_screen/home_screen.dart';
 import 'package:portfolio_website/controller/connection_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio_website/screens/nav_bar/widget/drawer.dart';
 import 'package:provider/provider.dart';
 
 class NavBarScreen extends StatelessWidget {
@@ -26,20 +27,14 @@ class NavBarScreen extends StatelessWidget {
             appBar: PreferredSize(
               preferredSize: const Size.fromHeight(45),
               child: AppBar(
+                iconTheme: const IconThemeData(color: Colors.white),
                 shadowColor: Colors.white,
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     controller.isCurrentScreenMobile(screenWidth)
-                        ? IconButton(
-                            icon: const Icon(Icons.arrow_outward_rounded,
-                                color: Colors.white),
-                            onPressed: () => {
-                              debugPrint('Open drawer'),
-                              Scaffold.of(context).openDrawer()
-                            },
-                          )
+                        ? Container()
                         : Expanded(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -89,12 +84,7 @@ class NavBarScreen extends StatelessWidget {
                             ),
                           ),
                     controller.isCurrentScreenMobile(screenWidth)
-                        ? IconButton(
-                            onPressed: () => {},
-                            icon: const Icon(
-                              Icons.menu,
-                              color: Colors.white,
-                            ))
+                        ? Container()
                         : Expanded(
                             // Use Expanded to ensure that the right part takes up only necessary space
                             child: Row(
@@ -131,6 +121,7 @@ class NavBarScreen extends StatelessWidget {
                 ),
               ),
             ),
+            drawer: controller.isCurrentScreenMobile(screenWidth) ? const MenuDrawer() : null,
             body: IndexedStack(
               index: controller.currentPageIndex,
               children: const [
