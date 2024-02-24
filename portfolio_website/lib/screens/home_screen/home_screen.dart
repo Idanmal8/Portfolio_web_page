@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:portfolio_website/screens/home_screen/widgets/gradient_text.dart';
 import 'package:portfolio_website/screens/home_screen/widgets/tech_stack_animation.dart';
+import 'package:portfolio_website/utilities/gradient_text.dart';
 import 'package:portfolio_website/theme.dart';
+import 'package:flutter/material.dart';
 
 
 class HomeScreen extends StatefulWidget {

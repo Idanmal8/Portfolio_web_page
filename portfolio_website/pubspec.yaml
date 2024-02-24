@@ -64,6 +64,7 @@ flutter:
   assets:
     - assets/tech_stack_assets/
     - assets/my_pictures/
+    - assets/project_box_icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

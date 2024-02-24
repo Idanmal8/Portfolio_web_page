@@ -1,9 +1,11 @@
 import 'package:portfolio_website/screens/nav_bar/controller/nav_bar_controller.dart';
-import 'package:portfolio_website/screens/home_screen/home_screen.dart';
+import 'package:portfolio_website/screens/nav_bar/widget/nav_button.dart';
 import 'package:portfolio_website/controller/connection_controller.dart';
-import 'package:flutter/material.dart';
+import 'package:portfolio_website/screens/home_screen/home_screen.dart';
 import 'package:portfolio_website/screens/nav_bar/widget/drawer.dart';
+import 'package:portfolio_website/screens/projects_screen/projects_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 class NavBarScreen extends StatelessWidget {
   const NavBarScreen({super.key});
@@ -12,7 +14,7 @@ class NavBarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     const TextStyle headlineOnPressedTextStyle = TextStyle(
-      color: Color.fromARGB(255, 142, 143, 250),
+      color: Color.fromARGB(255, 119, 82, 254),
     );
     const TextStyle headlineTextStyle = TextStyle(
       color: Color.fromARGB(255, 255, 255, 255),
@@ -37,48 +39,27 @@ class NavBarScreen extends StatelessWidget {
                         ? Container()
                         : Expanded(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                TextButton(
+                                _hoverableLinkButton(
                                   onPressed: () => controller
                                       .openUrl(controller.faceBookLink),
-                                  child: const Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text('Facebook',
-                                          style: headlineTextStyle),
-                                      SizedBox(width: 8),
-                                      Icon(Icons.arrow_outward_rounded,
-                                          color: Colors.white),
-                                    ],
-                                  ),
+                                  text: 'Facebook',
+                                  icon: Icons.arrow_outward_rounded,
+                                  textStyle: headlineTextStyle,
                                 ),
-                                TextButton(
+                                _hoverableLinkButton(
                                   onPressed: () =>
                                       controller.openUrl(controller.gitHubLink),
-                                  child: const Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text('Github', style: headlineTextStyle),
-                                      SizedBox(width: 8),
-                                      Icon(Icons.arrow_outward_rounded,
-                                          color: Colors.white),
-                                    ],
-                                  ),
+                                  text: 'Github',
+                                  icon: Icons.arrow_outward_rounded,
+                                  textStyle: headlineTextStyle,
                                 ),
-                                TextButton(
+                                _hoverableLinkButton(
                                   onPressed: () => controller
                                       .openUrl(controller.linkedInLink),
-                                  child: const Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text('LinkedIn',
-                                          style: headlineTextStyle),
-                                      SizedBox(width: 8),
-                                      Icon(Icons.arrow_outward_rounded,
-                                          color: Colors.white),
-                                    ],
-                                  ),
+                                  text: 'LinkedIn',
+                                  icon: Icons.arrow_outward_rounded,
+                                  textStyle: headlineTextStyle,
                                 ),
                               ],
                             ),
@@ -90,29 +71,32 @@ class NavBarScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                TextButton(
-                                  child: Text('Home',
-                                      style: controller.currentPageIndex == 0
-                                          ? headlineOnPressedTextStyle
-                                          : headlineTextStyle),
+                                NavButton(
+                                  label: 'Home',
                                   onPressed: () =>
                                       controller.onDestinationSelected(0),
+                                  isSelected: controller.currentPageIndex == 0,
+                                  selectedTextStyle: headlineOnPressedTextStyle,
+                                  normalTextStyle: headlineTextStyle,
                                 ),
-                                TextButton(
-                                  child: Text('Projects',
-                                      style: controller.currentPageIndex == 1
-                                          ? headlineOnPressedTextStyle
-                                          : headlineTextStyle),
+                                const SizedBox(
+                                    width:
+                                        8), // Add some space between the buttons (optional
+                                NavButton(
+                                  label: 'Projects',
                                   onPressed: () =>
                                       controller.onDestinationSelected(1),
+                                  isSelected: controller.currentPageIndex == 1,
+                                  selectedTextStyle: headlineOnPressedTextStyle,
+                                  normalTextStyle: headlineTextStyle,
                                 ),
-                                TextButton(
-                                  child: Text('About me',
-                                      style: controller.currentPageIndex == 2
-                                          ? headlineOnPressedTextStyle
-                                          : headlineTextStyle),
+                                NavButton(
+                                  label: 'About me',
                                   onPressed: () =>
                                       controller.onDestinationSelected(2),
+                                  isSelected: controller.currentPageIndex == 2,
+                                  selectedTextStyle: headlineOnPressedTextStyle,
+                                  normalTextStyle: headlineTextStyle,
                                 ),
                               ],
                             ),
@@ -121,13 +105,14 @@ class NavBarScreen extends StatelessWidget {
                 ),
               ),
             ),
-            drawer: controller.isCurrentScreenMobile(screenWidth) ? const MenuDrawer() : null,
+            drawer: controller.isCurrentScreenMobile(screenWidth)
+                ? const MenuDrawer()
+                : null,
             body: IndexedStack(
               index: controller.currentPageIndex,
               children: const [
                 HomeScreen(),
-                // Uncomment and replace these with your actual screens
-                // CustomersScreen(),
+                ProjectsScreen(),
                 // CalendarScreen(),
                 // ProfileScreen(),
                 // Add more screens as needed
@@ -135,6 +120,38 @@ class NavBarScreen extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _hoverableLinkButton(
+      {required VoidCallback onPressed,
+      required String text,
+      required IconData icon,
+      required TextStyle textStyle}) {
+    return MouseRegion(
+      onHover: (event) => {}, // Not needed for the hover effect
+      onExit: (event) => {}, // Not needed for the hover effect
+      child: TextButton(
+        onPressed: onPressed,
+        style: ButtonStyle(
+          overlayColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.hovered)) {
+                return Colors.white.withOpacity(0.1);
+              }
+              return null; // Defer to the widget's default.
+            },
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(text, style: textStyle),
+            const SizedBox(width: 8),
+            Icon(icon, color: Colors.white),
+          ],
+        ),
       ),
     );
   }
