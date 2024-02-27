@@ -16,25 +16,21 @@ class MyApp extends StatelessWidget {
         create: (context) => ConnectionController(),
         child: Builder(
           builder: (context) {
-            // Use FutureBuilder to wait for the internet check
             return FutureBuilder<bool>(
               future:
                   context.read<ConnectionController>().hasInternetConnection(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  // While waiting for the future to complete, show a loading indicator
                   return const MaterialApp(
                       home: Scaffold(
                           body: Center(child: CircularProgressIndicator())));
                 } else if (snapshot.hasData && snapshot.data == true) {
-                  // If there is an internet connection, proceed to the main screen
                   return MaterialApp(
                     title: 'Idan\'s Portfolio',
                     theme: myPortfolioTheme,
                     home: const NavBarScreen(),
                   );
                 } else {
-                  // If there is no internet connection, navigate to an error or "no internet" screen
                   return const MaterialApp(home: ErrorConnetionScreen());
                 }
               },

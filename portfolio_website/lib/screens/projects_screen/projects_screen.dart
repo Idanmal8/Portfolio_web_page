@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:portfolio_website/screens/projects_screen/controller/projects_controller.dart';
-import 'package:portfolio_website/utilities/gradient_text.dart';
 import 'package:portfolio_website/screens/projects_screen/widgets/project_box.dart';
+import 'package:portfolio_website/utilities/gradient_text.dart';
 import 'package:portfolio_website/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 class ProjectsScreen extends StatelessWidget {
   const ProjectsScreen({super.key});
@@ -24,7 +24,8 @@ class ProjectsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(16.0), // Add some padding around the GradientText
+                      padding: const EdgeInsets.all(
+                          16.0), // Add some padding around the GradientText
                       child: GradientText(
                         text: 'Projects',
                         gradient: const LinearGradient(
@@ -42,36 +43,59 @@ class ProjectsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 16), // Spacing at the top
                     SizedBox(
                       width: screenWidth * 0.7,
                       // Removed Wrap widget and replaced with GridView.builder
                       child: GridView.builder(
-                        shrinkWrap: true, // Allows GridView to work within SingleChildScrollView
-                        physics: const NeverScrollableScrollPhysics(), // Disables scrolling within GridView
+                        shrinkWrap:
+                            true, // Allows GridView to work within SingleChildScrollView
+                        physics:
+                            const NeverScrollableScrollPhysics(), // Disables scrolling within GridView
                         itemCount: controller.projects.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: screenWidth < 1250 ? 1 : 2, // Creates a grid with 2 columns
-                          crossAxisSpacing: screenWidth < 1250 ? 8 : 16, // Horizontal space between items
-                          mainAxisSpacing:  screenWidth < 1250 ? 8 : 16, // Vertical space between items
-                          childAspectRatio:  screenWidth < 1250 ? 4.3 : 2.9
-                        ),
+                            crossAxisCount: screenWidth < 1250
+                                ? 1
+                                : 2, // Creates a grid with 2 columns
+                            crossAxisSpacing: screenWidth < 1250
+                                ? 8
+                                : 16, // Horizontal space between items
+                            mainAxisSpacing: screenWidth < 1250
+                                ? 8
+                                : 16, // Vertical space between items
+                            childAspectRatio: screenWidth < 1250 ? 4.3 : 2.9),
                         itemBuilder: (context, index) {
                           final project = controller.projects[index];
                           return ProjectBox(
                             name: project.name,
                             languages: project.languages,
                             onPressedGit: () {
-                              controller.openUrl(Uri.parse(project.onPressedGit));
+                              controller
+                                  .openUrl(Uri.parse(project.onPressedGit));
                             },
-                            onPressedLink: project.onPressedLink != null ? () {
-                              controller.openUrl(Uri.parse(project.onPressedLink!));
-                            } : null,
+                            onPressedLink: project.onPressedLink != null
+                                ? () {
+                                    controller.openUrl(
+                                        Uri.parse(project.onPressedLink!));
+                                  }
+                                : null,
                             isPrivate: project.isPrivate,
                           );
                         },
                       ),
                     ),
-                    const SizedBox(height: 16), // Spacing at the bottom
+                    const SizedBox(height: 16),
+                    // Spacing at the bottom
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          '© 2024 Idan Malka. All Rights Reserved.',
+                          style: TextStyle(
+                              color: Color.fromARGB(125, 119, 82, 254)),
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -81,5 +105,4 @@ class ProjectsScreen extends StatelessWidget {
       ),
     );
   }
-
 }

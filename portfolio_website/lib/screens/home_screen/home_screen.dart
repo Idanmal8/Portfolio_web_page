@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:portfolio_website/screens/home_screen/widgets/tech_stack_animation.dart';
 import 'package:portfolio_website/utilities/gradient_text.dart';
-import 'package:portfolio_website/theme.dart';
-import 'package:flutter/material.dart';
-
+import 'package:portfolio_website/theme.dart'; // Make sure this path is correct
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,18 +12,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-  
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double fontSizeLarge = getFontSize(screenWidth);
 
-    return Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        alignment: Alignment.center,
-        child: SingleChildScrollView(
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          alignment: Alignment.center,
           child: Column(
             children: [
               Padding(
@@ -32,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       GradientText(
-                        text: 'Hello. I\'m Idan.',
+                        text: 'Hello. I\'m Your Name.',
                         gradient: const LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
@@ -64,16 +62,27 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(
-                        height: 80,
-                      ),
+                      const SizedBox(height: 80),
                       const TechStackAnimation(),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            '© 2024 Idan Malka. All Rights Reserved.',
+                            style: TextStyle(
+                                color: Color.fromARGB(125, 119, 82, 254)),
+                          )
+                        ],
+                      )
                     ],
                   ),
                 ),
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

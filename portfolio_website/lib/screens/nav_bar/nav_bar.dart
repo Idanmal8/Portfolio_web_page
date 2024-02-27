@@ -1,3 +1,4 @@
+import 'package:portfolio_website/screens/about_me_screen/about_me_screen.dart';
 import 'package:portfolio_website/screens/nav_bar/controller/nav_bar_controller.dart';
 import 'package:portfolio_website/screens/nav_bar/widget/nav_button.dart';
 import 'package:portfolio_website/controller/connection_controller.dart';
@@ -113,9 +114,7 @@ class NavBarScreen extends StatelessWidget {
               children: const [
                 HomeScreen(),
                 ProjectsScreen(),
-                // CalendarScreen(),
-                // ProfileScreen(),
-                // Add more screens as needed
+                AboutMeScreen(),
               ],
             ),
           );

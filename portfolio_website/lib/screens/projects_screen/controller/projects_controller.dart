@@ -23,8 +23,20 @@ class ProjectsController extends ChangeNotifier {
       onPressedGit: "",
     ),
     Project(
+      name: "Commodo CRM system",
+      languages: ["Python", "Django", "HTML", "CSS", "JS Vanilla","SSMSQL", "Private"],
+      isPrivate: true,
+      onPressedGit: "",
+    ),
+    Project(
       name: "Commodo whatsapp bot",
       languages: ["Python", "Flask", "WhatsApp API", "SSMSQL", "Private"],
+      isPrivate: true,
+      onPressedGit: "",
+    ),
+    Project(
+      name: "Ai-Therapy - AI chatbot MVP app volenteer",
+      languages: ["Flutter", "Dart", "Python", "Flask", "PostgreSQL", "Private"],
       isPrivate: true,
       onPressedGit: "",
     ),

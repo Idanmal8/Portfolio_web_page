@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:portfolio_website/theme.dart';
+import 'package:flutter/material.dart';
 
 class ProjectBox extends StatefulWidget {
   final List<String> languages;
