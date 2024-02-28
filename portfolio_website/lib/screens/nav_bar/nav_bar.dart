@@ -7,6 +7,8 @@ import 'package:portfolio_website/screens/nav_bar/widget/drawer.dart';
 import 'package:portfolio_website/screens/projects_screen/projects_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
 
 class NavBarScreen extends StatelessWidget {
   const NavBarScreen({super.key});
@@ -91,6 +93,7 @@ class NavBarScreen extends StatelessWidget {
                                   selectedTextStyle: headlineOnPressedTextStyle,
                                   normalTextStyle: headlineTextStyle,
                                 ),
+                                const SizedBox(width: 5),
                                 NavButton(
                                   label: 'About me',
                                   onPressed: () =>
@@ -98,6 +101,30 @@ class NavBarScreen extends StatelessWidget {
                                   isSelected: controller.currentPageIndex == 2,
                                   selectedTextStyle: headlineOnPressedTextStyle,
                                   normalTextStyle: headlineTextStyle,
+                                ),
+                                const SizedBox(width: 5),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    // Use the dart:html library to create an anchor element and trigger the download
+                                    html.AnchorElement(
+                                        href: 'assets/my_cv/Idan_Malka_cv.pdf')
+                                      ..setAttribute(
+                                          "download", "Idan_Malka_cv.pdf")
+                                      ..click();
+                                  },
+                                  child: const Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('Hire me!'),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Icon(
+                                        Icons.download,
+                                        size: 15.0,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),

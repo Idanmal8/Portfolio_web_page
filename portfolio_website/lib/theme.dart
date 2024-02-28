@@ -7,7 +7,7 @@ final ThemeData myPortfolioTheme = ThemeData(
   primaryColor: Colors.white,
 );
 
-double getFontSize(double screenWidth) {
+double getFontSizeGeneralHeadline(double screenWidth) {
   if (screenWidth < 300) {
     return 18;
   } else if (screenWidth < 400) {
@@ -57,22 +57,27 @@ double getDynamicFontSizeForProjectsTitles(double screenWidth) {
 }
 
 double getDynamicFontSizeForProjectsSubTitles(double screenWidth) {
-  if (screenWidth < 1000) {
-    return 8;
-  } else if (screenWidth < 1250) {
-    return 15;
-  } else {
-    return 15; // Larger screen, larger font
-  }
+  return screenWidth < 1000 ? 8 : 15;
 }
 
 double getDynamicSpacingForProjects(double screenWidth) {
-  // Define your breakpoints and corresponding spacing
-  if (screenWidth < 840) {
-    return 8; // Smaller screen, smaller spacing
+  return screenWidth < 840 ? 8 : 15;
+}
+
+double getFontSizeAboutMePage(double screenWidth) {
+  if (screenWidth < 300) {
+    return 10;
+  } else if (screenWidth < 940) {
+    return 12;
+  } else if (screenWidth < 1200) {
+    return 14;
   } else {
-    return 15; // Larger screen, larger spacing
+    return 16;
   }
+}
+
+double getImageSize(double screenWidth) {
+  return isMobile(screenWidth) ? 150 : 200;
 }
 
 void getTechStackAnimationCircleSize(double screenWidth, AvatarCircle avatar) {

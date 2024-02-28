@@ -74,9 +74,8 @@ class _AboutMeScreenState extends State<AboutMeScreen>
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double fontSizeLarge =
-        getFontSize(screenWidth); // Ensure you have this method defined
-    double imageSize = screenWidth * 0.12; // Example: 12% of the screen width
+    double fontSizeLarge = getFontSizeGeneralHeadline(
+        screenWidth); // Ensure you have this method defined
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -105,7 +104,6 @@ class _AboutMeScreenState extends State<AboutMeScreen>
                 opacity: _myStoryController,
                 child: MyStorySegment(
                   screenWidth: screenWidth,
-                  imageSize: imageSize,
                 ),
               ),
               FadeTransition(

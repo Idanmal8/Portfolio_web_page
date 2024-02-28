@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_website/theme.dart';
 
 class MyExpirienceSegment extends StatelessWidget {
   final double screenWidth;
@@ -10,10 +11,13 @@ class MyExpirienceSegment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle fontStyle = TextStyle(
+        color: Colors.white,
+        fontSize: getFontSizeAboutMePage(screenWidth));
     return Container(
       padding: const EdgeInsets.all(16.0),
       width: screenWidth * 0.8,
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
@@ -21,13 +25,12 @@ class MyExpirienceSegment extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('MY EXPERIENCE',
-                    style: TextStyle(color: Colors.white, fontSize: 20)),
-                SizedBox(height: 2),
-                Text('Full Stack Developer @ Commodo.inc', style: TextStyle(color: Colors.white, fontSize: 20)),
-                SizedBox(height: 2),
-                Text('03/2021 - 08/2023', style: TextStyle(color: Colors.white, fontSize: 20)),
-                SizedBox(height: 5),
+                Text('MY EXPERIENCE', style: TextStyle(color: Colors.white, fontSize: getDynamicFontSizeForProjectsTitles(screenWidth))),
+                const SizedBox(height: 2),
+                Text('Full Stack Developer @ Commodo.inc', style: fontStyle),
+                const SizedBox(height: 2),
+                Text('03/2021 - 08/2023', style: fontStyle),
+                const SizedBox(height: 5),
                 Text(
                   'At Commodo I was one of the first programmers on site and developed the product with a team of 3 from scratch.\n'
                   'I designed and developed a robust and fully functional end-to-end Software-as-a-Service (SaaS) system currently deployed\n'
@@ -38,7 +41,7 @@ class MyExpirienceSegment extends StatelessWidget {
                   'Integrated the application with various systems to ensure seamless performance and user experience.\n'
                   'Server deployment and configuration using NGINX and Gunicorn.\n'
                   'Strong leadership and team management skills, fostering a collaborative and productive work environment.',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: fontStyle,
                 ),
               ],
             ),

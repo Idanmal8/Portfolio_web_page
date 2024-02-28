@@ -11,7 +11,7 @@ class ProjectsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double fontSizeLarge = getFontSize(screenWidth);
+    double fontSizeLarge = getFontSizeGeneralHeadline(screenWidth);
 
     return ChangeNotifierProvider<ProjectsController>(
       create: (context) => ProjectsController(),

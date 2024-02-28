@@ -1,3 +1,4 @@
+import 'package:portfolio_website/theme.dart';
 import 'package:flutter/material.dart';
 
 class EducationSegment extends StatelessWidget {
@@ -10,10 +11,11 @@ class EducationSegment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle fontStyle = TextStyle(color: Colors.white, fontSize: getFontSizeAboutMePage(screenWidth));
     return Container(
       padding: const EdgeInsets.all(16.0),
       width: screenWidth * 0.8,
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
@@ -22,13 +24,14 @@ class EducationSegment extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('EDUCATION',
-                    style: TextStyle(color: Colors.white, fontSize: 20)),
-                SizedBox(height: 2),
-                Text('2020 - 2024', style: TextStyle(color: Colors.white, fontSize: 20)),
-                SizedBox(height: 5),
+                    style: TextStyle(color: Colors.white, fontSize: getDynamicFontSizeForProjectsTitles(screenWidth))),
+                const SizedBox(height: 2),
+                Text('2020 - 2024',
+                    style: fontStyle),
+                const SizedBox(height: 5),
                 Text(
                   'BSc in Software engineering @ Azrieli College of Engineering Jerusalem.\n',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: fontStyle,
                 ),
               ],
             ),
