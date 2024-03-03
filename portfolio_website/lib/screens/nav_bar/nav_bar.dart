@@ -134,7 +134,9 @@ class NavBarScreen extends StatelessWidget {
               ),
             ),
             drawer: controller.isCurrentScreenMobile(screenWidth)
-                ? const MenuDrawer()
+                ? MenuDrawer(
+                    controller: controller,
+                  )
                 : null,
             body: IndexedStack(
               index: controller.currentPageIndex,

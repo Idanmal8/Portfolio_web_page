@@ -46,6 +46,12 @@ class ProjectsController extends ChangeNotifier {
       isPrivate: false,
       onPressedGit: "https://github.com/Idanmal8/jumpQuestGame",
     ),
+    Project(
+      name: "Website portfolio",
+      languages: ["Flutter", "Dart", "HTML", "MVC"],
+      isPrivate: false,
+      onPressedGit: "https://github.com/Idanmal8/jumpQuestGame",
+    ),
   ];
 
 

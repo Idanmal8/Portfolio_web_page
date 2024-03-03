@@ -64,7 +64,7 @@ class _ProjectBoxState extends State<ProjectBox> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -124,22 +124,19 @@ class _ProjectBoxState extends State<ProjectBox> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Expanded(
-                    flex: 1,
-                    child: AnimatedDefaultTextStyle(
-                      style: TextStyle(
-                        color: isHovered
-                            ? const Color.fromARGB(255, 0, 0, 0)
-                            : const Color.fromARGB(255, 110, 110, 110),
-                        fontSize: getDynamicFontSizeForProjectsSubTitles(
-                            MediaQuery.of(context).size.width),
-                      ),
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                      child: Text(
-                        widget.languages.join(', '),
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                  AnimatedDefaultTextStyle(
+                    style: TextStyle(
+                      color: isHovered
+                          ? const Color.fromARGB(255, 0, 0, 0)
+                          : const Color.fromARGB(255, 110, 110, 110),
+                      fontSize: getDynamicFontSizeForProjectsSubTitles(
+                          MediaQuery.of(context).size.width),
+                    ),
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    child: Text(
+                      widget.languages.join(', '),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],

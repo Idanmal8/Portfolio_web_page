@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:portfolio_website/screens/projects_screen/controller/projects_controller.dart';
 import 'package:portfolio_website/screens/projects_screen/widgets/project_box.dart';
 import 'package:portfolio_website/utilities/gradient_text.dart';
@@ -10,8 +12,11 @@ class ProjectsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const double minItemWidth = 200.0; // Minimum item width you desire
     double screenWidth = MediaQuery.of(context).size.width;
     double fontSizeLarge = getFontSizeGeneralHeadline(screenWidth);
+    int crossAxisCount = screenWidth ~/ minItemWidth;
+    crossAxisCount = max(crossAxisCount, 1); // Ensure at least 1 column
 
     return ChangeNotifierProvider<ProjectsController>(
       create: (context) => ProjectsController(),
@@ -54,16 +59,20 @@ class ProjectsScreen extends StatelessWidget {
                             const NeverScrollableScrollPhysics(), // Disables scrolling within GridView
                         itemCount: controller.projects.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: screenWidth < 1250
-                                ? 1
-                                : 2, // Creates a grid with 2 columns
-                            crossAxisSpacing: screenWidth < 1250
-                                ? 8
-                                : 16, // Horizontal space between items
-                            mainAxisSpacing: screenWidth < 1250
-                                ? 8
-                                : 16, // Vertical space between items
-                            childAspectRatio: screenWidth < 1250 ? 4.3 : 2.9),
+                          crossAxisCount: screenWidth < 1250
+                              ? 1
+                              : 2, // Creates a grid with 2 columns
+                          crossAxisSpacing: screenWidth < 1250
+                              ? 8
+                              : 16, // Horizontal space between items
+                          mainAxisSpacing: screenWidth < 1250
+                              ? 8
+                              : 16, // Vertical space between items
+                          childAspectRatio: (screenWidth / crossAxisCount) /
+                              (screenWidth /
+                                  crossAxisCount /
+                                  (2.8)), // Adjust based on your content
+                        ),
                         itemBuilder: (context, index) {
                           final project = controller.projects[index];
                           return ProjectBox(
@@ -86,13 +95,17 @@ class ProjectsScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     // Spacing at the bottom
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(
-                          '© 2024 Idan Malka. All Rights Reserved.',
-                          style: TextStyle(
-                              color: Color.fromARGB(125, 119, 82, 254)),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            '© 2024 Idan Malka. All Rights Reserved.',
+                            style: TextStyle(
+                                color: const Color.fromARGB(125, 119, 82, 254),
+                                fontSize: getDynamicFontSizeForProjectsTitles(screenWidth) * 0.5),
+                          ),
                         )
                       ],
                     ),

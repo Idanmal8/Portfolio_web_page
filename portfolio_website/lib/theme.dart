@@ -24,16 +24,14 @@ double getFontSizeGeneralHeadline(double screenWidth) {
 }
 
 double getIconSizeProjects(double screenWidth) {
-  if (screenWidth < 300) {
-    return 5;
-  } else if (screenWidth < 400) {
-    return 10;
+  if (screenWidth < 400) {
+    return 0;
   } else if (screenWidth < 560) {
-    return 15;
+    return 10;
   } else if (screenWidth < 840) {
+    return 15;
+  } else if (screenWidth < 1300) {
     return 20;
-  } else if (screenWidth < 1040) {
-    return 25;
   } else {
     return 30;
   }
@@ -50,14 +48,25 @@ double getDynamicFontSizeForProjectsTitles(double screenWidth) {
   } else if (screenWidth < 840) {
     return 18;
   } else if (screenWidth < 1040) {
-    return 20;
+    return 18;
   } else {
     return 22; // Larger screen, larger font
   }
 }
 
 double getDynamicFontSizeForProjectsSubTitles(double screenWidth) {
-  return screenWidth < 1000 ? 8 : 15;
+  // Define your breakpoints and corresponding font sizes
+  if (screenWidth < 400) {
+    return 0;
+  } else if (screenWidth < 560) {
+    return 9;
+  } else if (screenWidth < 840) {
+    return 11;
+  } else if (screenWidth < 1300) {
+    return 10;
+  } else {
+    return 15; // Larger screen, larger font
+  }
 }
 
 double getDynamicSpacingForProjects(double screenWidth) {
