@@ -31,7 +31,9 @@ class MyApp extends StatelessWidget {
                     home: const NavBarScreen(),
                   );
                 } else {
-                  return const MaterialApp(home: ErrorConnetionScreen());
+                  return const MaterialApp(
+                    home: ErrorConnetionScreen(),
+                  );
                 }
               },
             );

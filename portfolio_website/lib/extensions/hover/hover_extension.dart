@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 extension HoverColorExtensions on Widget {
   static final appContainer = html.window.document.getElementById('app-container');
 
-  // This function wraps the widget in an AnimatedContainer that changes color on hover.
   Widget withHoverColor(Color hoverColor, {Duration duration = const Duration(milliseconds: 200)}) {
     return StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {

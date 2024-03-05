@@ -5,6 +5,7 @@ final ThemeData myPortfolioTheme = ThemeData(
   fontFamily: 'Montserrat',
   scaffoldBackgroundColor: const Color.fromARGB(255, 25, 24, 25),
   primaryColor: Colors.white,
+  hintColor: const Color.fromARGB(255, 142, 143, 250),
 );
 
 double getFontSizeGeneralHeadline(double screenWidth) {
