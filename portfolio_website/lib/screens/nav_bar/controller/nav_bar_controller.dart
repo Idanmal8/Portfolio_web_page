@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class NavBarController extends ChangeNotifier {
   final ConnectionController _connectionController;
-  int currentPageIndex = 0;
+  int currentPageIndex = 1;
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;

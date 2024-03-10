@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:portfolio_website/screens/projects_screen/controller/projects_controller.dart';
 import 'package:portfolio_website/screens/projects_screen/widgets/project_box.dart';
+import 'package:portfolio_website/screens/projects_screen/widgets/project_box_v2/project_box_v2.dart';
 import 'package:portfolio_website/utilities/gradient_text.dart';
 import 'package:portfolio_website/theme.dart';
 import 'package:provider/provider.dart';
@@ -93,6 +94,7 @@ class ProjectsScreen extends StatelessWidget {
                         },
                       ),
                     ),
+                    const ProjectBoxV2(),
                     const SizedBox(height: 16),
                     // Spacing at the bottom
                     Row(
